@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Лидия & Денис</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,20 +16,15 @@
     <p class="splash-text">You are invited</p>
   </div>
 
-  <!-- Жемчужные бусы (висят поверх всего) -->
-  <div class="pearls-container" aria-hidden="true">
-    <div class="pearl-string" id="string1">
-      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
-      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
-      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
-    </div>
-    <div class="pearl-string" id="string2">
-      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+  <!-- Жемчужные декоративные нити (по бокам) -->
+  <div class="pearls-left" aria-hidden="true">
+    <div class="pearl-string-side" id="stringLeft">
       <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
       <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
     </div>
-    <div class="pearl-string" id="string3">
-      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+  </div>
+  <div class="pearls-right" aria-hidden="true">
+    <div class="pearl-string-side" id="stringRight">
       <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
       <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
     </div>
@@ -34,21 +32,20 @@
 
   <!-- Главный экран -->
   <section class="hero" id="hero">
-    <div class="hero-photo">
-      <!-- Замени на свою фотографию пары -->
-      <img src="assets/couple.jpg" alt="Лидия и Денис" class="hero-img">
-    </div>
-    <div class="hero-overlay">
+    <div class="hero-content">
       <h1 class="hero-names">Лидия <span class="amp">&amp;</span> Денис</h1>
-      <p class="hero-date">15 · 07 · 2025</p>
-      <p class="hero-sub">Мы приглашаем вас разделить с нами этот день</p>
+      <p class="hero-date">07 · 08 · 2026</p>
+      <p class="hero-city">Кемерово</p>
+    </div>
+    <div class="hero-photo-wrapper">
+      <img src="assets/couple.jpg" alt="Лидия и Денис" class="hero-img">
     </div>
   </section>
 
   <!-- Таймер -->
   <section class="timer-section" id="timer">
-    <div class="glass-card">
-      <h2>До свадьбы осталось</h2>
+    <div class="minimal-card">
+      <h2>До церемонии</h2>
       <div class="timer" id="countdown">
         <div><span id="days">00</span><small>дней</small></div>
         <div><span id="hours">00</span><small>часов</small></div>
@@ -60,37 +57,49 @@
 
   <!-- Место -->
   <section class="place-section" id="place">
-    <div class="glass-card">
-      <h2>Где будет праздник</h2>
-      <p class="place-name">Усадьба «Райский сад»</p>
-      <p class="place-address">Московская обл., 25-й км Новорижского шоссе</p>
-      <div class="map" id="map"></div>
+    <div class="minimal-card">
+      <h2>Локации</h2>
+      <div class="place-item">
+        <p class="place-time">14:20</p>
+        <p class="place-name">ЗАГС Рудничного района</p>
+        <p class="place-address">Кемерово</p>
+      </div>
+      <div class="place-item">
+        <p class="place-time">16:00</p>
+        <p class="place-name">Банкетный зал «Волна»</p>
+        <p class="place-address">ул. Томская, 5</p>
+      </div>
+      <div class="map" id="map">📍 Карта появится позже</div>
     </div>
   </section>
 
   <!-- Дресс-код -->
   <section class="dress-section" id="dresscode">
-    <div class="glass-card">
+    <div class="minimal-card">
       <h2>Дресс-код</h2>
-      <p>Мы будем благодарны, если вы поддержите цветовую гамму вечера</p>
-      <div class="dress-palette">
-        <div class="color" style="background:#f5f0eb;"></div>
-        <div class="color" style="background:#d4c5b2;"></div>
-        <div class="color" style="background:#b8a590;"></div>
-        <div class="color" style="background:#2b2b2b;"></div>
+      <p>Мы будем рады, если вы поддержите цветовую гамму</p>
+      <!-- Если хочешь фото дресс-кода, замени следующие div на img 
+           и загрузи фото в assets/dress1.jpg, dress2.jpg, dress3.jpg, dress4.jpg 
+           Либо оставь цветовые индикаторы -->
+      <div class="dress-photos">
+        <img src="assets/dress1.jpg" alt="Пример 1" class="dress-photo">
+        <img src="assets/dress2.jpg" alt="Пример 2" class="dress-photo">
+        <img src="assets/dress3.jpg" alt="Пример 3" class="dress-photo">
+        <img src="assets/dress4.jpg" alt="Пример 4" class="dress-photo">
       </div>
-      <p class="dress-hint">Жемчужный, шампань, графит, чёрный</p>
+      <p class="dress-hint">Чёрный, белый, жемчужный, графит</p>
     </div>
   </section>
 
-  <!-- RSVP -->
+  <!-- Подтверждение -->
   <section class="rsvp-section" id="rsvp">
-    <div class="glass-card">
+    <div class="minimal-card">
       <h2>Подтверждение</h2>
-      <p>Пожалуйста, дайте знать, сможете ли вы быть с нами</p>
-      <a class="telegram-btn" href="https://t.me/your_bot_or_username" target="_blank">
+      <p>Пожалуйста, сообщите, сможете ли вы быть с нами</p>
+      <a class="telegram-btn" href="https://t.me/ваш_контакт" target="_blank">
         Написать в Telegram
       </a>
+      <p class="rsvp-note">Вы также можете ответить в SMS или лично Максу</p>
     </div>
   </section>
 
