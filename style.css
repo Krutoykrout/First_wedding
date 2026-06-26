@@ -1,0 +1,345 @@
+/* === БАЗА === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0a;
+  color: #f5f0eb;
+  font-family: 'Times New Roman', 'Georgia', serif;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === ЗАСТАВКА === */
+.splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.splash.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-text {
+  font-size: clamp(1.8rem, 6vw, 3.5rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #f5f0eb;
+  animation: fadeInSplash 1s ease-out;
+}
+
+@keyframes fadeInSplash {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === ЖЕМЧУЖНЫЕ БУСЫ === */
+.pearls-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  padding-top: 0;
+}
+
+.pearl-string {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transform-origin: top center;
+  opacity: 0.9;
+  will-change: transform;
+}
+
+.pearl {
+  display: block;
+  width: 26px;
+  height: 32px;
+  background: radial-gradient(circle at 35% 30%, #ffffff 5%, #e6d9c8 60%, #b8a590 95%);
+  border-radius: 50% 50% 45% 45%;
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.5),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  position: relative;
+  animation: pearlShine 3s infinite alternate ease-in-out;
+}
+
+/* Имитация нити */
+.pearl-string::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  width: 2px;
+  height: 110%;
+  background: linear-gradient(to bottom, rgba(180, 160, 140, 0.7), rgba(180, 160, 140, 0.2));
+  z-index: -1;
+}
+
+/* Блик */
+.pearl::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  width: 10px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+@keyframes pearlShine {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 4px 10px rgba(0,0,0,0.5), inset 0 -4px 6px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8);
+  }
+  100% {
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.6), 0 4px 12px rgba(0,0,0,0.6), inset 0 -4px 6px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.9);
+  }
+}
+
+/* === ГЛАВНЫЙ ЭКРАН === */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.hero-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7) contrast(1.1);
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5f0eb;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  padding: 0 1rem;
+}
+
+.hero-names {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+
+.amp {
+  font-style: italic;
+  font-family: 'Georgia', serif;
+  font-size: 1.2em;
+  margin: 0 0.2em;
+  color: #e6d9c8;
+}
+
+.hero-date {
+  font-size: 1.5rem;
+  letter-spacing: 0.4em;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* === СТЕКЛЯННЫЕ КАРТОЧКИ === */
+.glass-card {
+  background: rgba(20, 20, 20, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 240, 235, 0.15);
+  border-radius: 28px;
+  padding: 2.5rem 2rem;
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+section {
+  padding: 4rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  color: #f5f0eb;
+}
+
+/* === ТАЙМЕР === */
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.timer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer span {
+  font-size: 2.5rem;
+  font-weight: 200;
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+
+.timer small {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* === МЕСТО === */
+.place-name {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.place-address {
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+.map {
+  width: 100%;
+  height: 200px;
+  background: rgba(245,240,235,0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(245,240,235,0.5);
+  font-style: italic;
+}
+
+/* === ДРЕСС-КОД === */
+.dress-palette {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.color {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255,255,255,0.2);
+  border: 1px solid rgba(245,240,235,0.3);
+}
+
+.dress-hint {
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  opacity: 0.8;
+}
+
+/* === RSVP === */
+.telegram-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.9rem 2.5rem;
+  background: rgba(245,240,235,0.1);
+  border: 1px solid rgba(245,240,235,0.3);
+  border-radius: 40px;
+  color: #f5f0eb;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  transition: all 0.3s;
+}
+
+.telegram-btn:hover {
+  background: rgba(245,240,235,0.2);
+  border-color: #f5f0eb;
+}
+
+/* === ФУТЕР === */
+footer {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+}
+
+/* === АДАПТИВ === */
+@media (max-width: 600px) {
+  .pearls-container {
+    gap: 40px;
+  }
+  .pearl {
+    width: 18px;
+    height: 22px;
+  }
+  .glass-card {
+    padding: 2rem 1.2rem;
+    margin: 0 0.5rem;
+  }
+  .timer {
+    gap: 0.8rem;
+  }
+  .timer span {
+    font-size: 2rem;
+  }
+}
