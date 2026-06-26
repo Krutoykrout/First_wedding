@@ -194,3 +194,14 @@ button:hover {
   transform: scale(1.05);
   background: rgba(255,255,255,0.08);
 }
+@media (max-width: 768px) {
+  .pearl {
+    opacity: 0.4 !important;
+    filter: none !important;
+    animation-duration: 8s !important;
+  }
+
+  .names {
+    font-size: 2.2rem;
+  }
+}
