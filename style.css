@@ -73,14 +73,20 @@ body {
 .pearl {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff, #cfcfcf);
+  background: radial-gradient(circle at 30% 30%, #ffffff, #d0d0d0, #9a9a9a);
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  animation: float 6s ease-in-out infinite;
+
+  animation: pearlFloat 6s ease-in-out infinite;
+  will-change: transform;
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+/* мягкое “дыхание” */
+@keyframes pearlFloat {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  25%  { transform: translate(2px, -4px) scale(1.02); }
+  50%  { transform: translate(-2px, -8px) scale(0.98); }
+  75%  { transform: translate(3px, -3px) scale(1.01); }
+  100% { transform: translate(0px, 0px) scale(1); }
 }
 
 /* TEXT */
