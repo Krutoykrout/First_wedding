@@ -1,4 +1,4 @@
-/* RESET */
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
   overflow-x: hidden;
 }
 
-/* INTRO */
+/* ================= INTRO ================= */
 #intro {
   position: fixed;
   inset: 0;
@@ -27,25 +27,25 @@ body {
 .intro-text {
   font-size: 2rem;
   opacity: 0;
-  animation: showText 1.2s forwards;
+  animation: introFade 1.2s forwards;
 }
 
-@keyframes showText {
+@keyframes introFade {
   to { opacity: 1; }
 }
 
-/* APP */
+/* ================= MAIN ================= */
 #app {
   opacity: 0;
-  animation: fadeIn 2s forwards;
-  animation-delay: 1.8s;
+  animation: appFade 1.8s ease forwards;
+  animation-delay: 1.5s;
 }
 
-@keyframes fadeIn {
+@keyframes appFade {
   to { opacity: 1; }
 }
 
-/* HERO */
+/* ================= HERO ================= */
 .hero {
   height: 100vh;
   position: relative;
@@ -59,10 +59,10 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.05), rgba(0,0,0,0.95));
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05), rgba(0,0,0,0.95));
 }
 
-/* PEARLS */
+/* ================= PEARLS (LUX MOTION) ================= */
 .pearls {
   position: fixed;
   inset: 0;
@@ -72,24 +72,23 @@ body {
 
 .pearl {
   position: absolute;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffffff, #d0d0d0, #9a9a9a);
+  background: radial-gradient(circle at 30% 30%, #fff, #d0d0d0, #8a8a8a);
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 
-  animation: pearlFloat 6s ease-in-out infinite;
+  animation: floatPearl 6s ease-in-out infinite;
   will-change: transform;
 }
 
-/* мягкое “дыхание” */
-@keyframes pearlFloat {
-  0%   { transform: translate(0px, 0px) scale(1); }
-  25%  { transform: translate(2px, -4px) scale(1.02); }
-  50%  { transform: translate(-2px, -8px) scale(0.98); }
-  75%  { transform: translate(3px, -3px) scale(1.01); }
-  100% { transform: translate(0px, 0px) scale(1); }
+@keyframes floatPearl {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(0,-8px) scale(1.03); }
+  100% { transform: translate(0,0) scale(1); }
 }
 
-/* TEXT */
+/* ================= TEXT ================= */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -98,6 +97,7 @@ body {
 .names {
   font-size: 3rem;
   font-weight: 300;
+  letter-spacing: 2px;
 }
 
 .subtitle {
@@ -105,50 +105,14 @@ body {
   margin-top: 10px;
 }
 
-/* SECTIONS */
-.section {
-  padding: 70px 20px;
-  text-align: center;
-}
-
-/* PHOTO */
-.photo-frame {
-  width: 80%;
-  max-width: 500px;
-  height: 300px;
-  margin: auto;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* BUTTON */
-button {
-  margin-top: 15px;
-  padding: 12px 18px;
-  border-radius: 25px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  cursor: pointer;
-}
-
-/* ===============================
-   APPLE-LIKE FADE ANIMATION
-=============================== */
-
+/* ================= SECTIONS ================= */
 .section {
   padding: 80px 20px;
   text-align: center;
 
   opacity: 0;
   transform: translateY(30px);
-  transition: all 1s ease;
-  will-change: opacity, transform;
+  transition: 1s ease;
 }
 
 .section.show {
@@ -156,15 +120,33 @@ button {
   transform: translateY(0);
 }
 
-/* мягкое появление всего сайта */
-#app {
-  opacity: 0;
-  animation: appFade 1.8s ease forwards;
-  animation-delay: 1.5s;
+/* ================= PHOTO ================= */
+.photo-frame {
+  width: 80%;
+  max-width: 500px;
+  height: 300px;
+  margin: auto;
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes appFade {
-  to {
-    opacity: 1;
-  }
+/* ================= BUTTON ================= */
+button {
+  margin-top: 15px;
+  padding: 12px 18px;
+  border-radius: 25px;
+
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+
+  cursor: pointer;
+  backdrop-filter: blur(10px);
 }
