@@ -1,6 +1,5 @@
 
-
-// INTRO
+// ================= INTRO =================
 window.addEventListener("load", () => {
   const intro = document.getElementById("intro");
 
@@ -13,7 +12,7 @@ window.addEventListener("load", () => {
 });
 
 
-// COUNTDOWN
+// ================= COUNTDOWN =================
 const weddingDate = new Date("2026-08-07T14:20:00").getTime();
 const countdown = document.getElementById("countdown");
 
@@ -39,11 +38,29 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 
-// PEARLS
+// ================= SCROLL REVEAL =================
+const sections = document.querySelectorAll(".section");
+
+function reveal() {
+  const trigger = window.innerHeight * 0.85;
+
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top < trigger) sec.classList.add("show");
+  });
+}
+
+reveal();
+window.addEventListener("scroll", reveal);
+
+
+// ================= PEARLS =================
 const container = document.querySelector(".pearls");
 
 const isMobile = window.innerWidth < 768;
 const count = isMobile ? 40 : 90;
+
+const pearls = [];
 
 function createPearls() {
   if (!container) return;
@@ -52,24 +69,42 @@ function createPearls() {
     const p = document.createElement("div");
     p.className = "pearl";
 
-    const size = 5 + Math.random() * 10;
+    const size = 4 + Math.random() * 10;
+
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
 
     p.style.width = size + "px";
     p.style.height = size + "px";
-
-    p.style.left = Math.random() * window.innerWidth + "px";
-    p.style.top = Math.random() * window.innerHeight + "px";
-
-    p.style.opacity = 0.3 + Math.random() * 0.5;
+    p.style.left = x + "px";
+    p.style.top = y + "px";
 
     container.appendChild(p);
+    pearls.push(p);
   }
 }
 
 createPearls();
 
 
-// MUSIC
+// ================= PEARL MOTION (LUX DRIFT) =================
+function animate() {
+  const time = Date.now() * 0.001;
+
+  pearls.forEach((p, i) => {
+    const x = Math.sin(time + i) * 0.6;
+    const y = Math.cos(time + i) * 0.6;
+
+    p.style.transform = `translate(${x}px, ${y}px)`;
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+
+// ================= MUSIC =================
 const audio = new Audio("music.mp3");
 audio.loop = true;
 audio.volume = 0.5;
@@ -103,28 +138,3 @@ btn.addEventListener("click", async () => {
     alert("Нажми ещё раз");
   }
 });
-
-
-// ===============================
-// SCROLL REVEAL (APPLE STYLE)
-// ===============================
-
-const sections = document.querySelectorAll(".section");
-
-function revealSections() {
-  const triggerBottom = window.innerHeight * 0.85;
-
-  sections.forEach(sec => {
-    const top = sec.getBoundingClientRect().top;
-
-    if (top < triggerBottom) {
-      sec.classList.add("show");
-    }
-  });
-}
-
-// первый запуск
-revealSections();
-
-// при скролле
-window.addEventListener("scroll", revealSections);
