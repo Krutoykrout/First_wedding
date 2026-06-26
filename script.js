@@ -103,3 +103,28 @@ btn.addEventListener("click", async () => {
     alert("Нажми ещё раз");
   }
 });
+
+
+// ===============================
+// SCROLL REVEAL (APPLE STYLE)
+// ===============================
+
+const sections = document.querySelectorAll(".section");
+
+function revealSections() {
+  const triggerBottom = window.innerHeight * 0.85;
+
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+
+    if (top < triggerBottom) {
+      sec.classList.add("show");
+    }
+  });
+}
+
+// первый запуск
+revealSections();
+
+// при скролле
+window.addEventListener("scroll", revealSections);
