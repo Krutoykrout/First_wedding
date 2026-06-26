@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Лидия & Денис</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Заставка -->
+  <div id="splash" class="splash">
+    <p class="splash-text">You are invited</p>
+  </div>
+
+  <!-- Жемчужные бусы (висят поверх всего) -->
+  <div class="pearls-container" aria-hidden="true">
+    <div class="pearl-string" id="string1">
+      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+    </div>
+    <div class="pearl-string" id="string2">
+      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+    </div>
+    <div class="pearl-string" id="string3">
+      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+      <span class="pearl"></span><span class="pearl"></span><span class="pearl"></span>
+    </div>
+  </div>
+
+  <!-- Главный экран -->
+  <section class="hero" id="hero">
+    <div class="hero-photo">
+      <!-- Замени на свою фотографию пары -->
+      <img src="assets/couple.jpg" alt="Лидия и Денис" class="hero-img">
+    </div>
+    <div class="hero-overlay">
+      <h1 class="hero-names">Лидия <span class="amp">&amp;</span> Денис</h1>
+      <p class="hero-date">15 · 07 · 2025</p>
+      <p class="hero-sub">Мы приглашаем вас разделить с нами этот день</p>
+    </div>
+  </section>
+
+  <!-- Таймер -->
+  <section class="timer-section" id="timer">
+    <div class="glass-card">
+      <h2>До свадьбы осталось</h2>
+      <div class="timer" id="countdown">
+        <div><span id="days">00</span><small>дней</small></div>
+        <div><span id="hours">00</span><small>часов</small></div>
+        <div><span id="minutes">00</span><small>минут</small></div>
+        <div><span id="seconds">00</span><small>секунд</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Место -->
+  <section class="place-section" id="place">
+    <div class="glass-card">
+      <h2>Где будет праздник</h2>
+      <p class="place-name">Усадьба «Райский сад»</p>
+      <p class="place-address">Московская обл., 25-й км Новорижского шоссе</p>
+      <div class="map" id="map"></div>
+    </div>
+  </section>
+
+  <!-- Дресс-код -->
+  <section class="dress-section" id="dresscode">
+    <div class="glass-card">
+      <h2>Дресс-код</h2>
+      <p>Мы будем благодарны, если вы поддержите цветовую гамму вечера</p>
+      <div class="dress-palette">
+        <div class="color" style="background:#f5f0eb;"></div>
+        <div class="color" style="background:#d4c5b2;"></div>
+        <div class="color" style="background:#b8a590;"></div>
+        <div class="color" style="background:#2b2b2b;"></div>
+      </div>
+      <p class="dress-hint">Жемчужный, шампань, графит, чёрный</p>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp-section" id="rsvp">
+    <div class="glass-card">
+      <h2>Подтверждение</h2>
+      <p>Пожалуйста, дайте знать, сможете ли вы быть с нами</p>
+      <a class="telegram-btn" href="https://t.me/your_bot_or_username" target="_blank">
+        Написать в Telegram
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Лидия & Денис</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
