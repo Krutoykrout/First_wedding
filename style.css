@@ -1,7 +1,4 @@
-
-/* ===============================
-   RESET
-=============================== */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -15,10 +12,7 @@ body {
   overflow-x: hidden;
 }
 
-
-/* ===============================
-   INTRO
-=============================== */
+/* INTRO */
 #intro {
   position: fixed;
   inset: 0;
@@ -27,38 +21,31 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  transition: opacity 1.2s ease;
+  transition: opacity 1s ease;
 }
 
 .intro-text {
   font-size: 2rem;
-  letter-spacing: 2px;
   opacity: 0;
-  animation: introText 1.2s ease forwards;
+  animation: showText 1.2s forwards;
 }
 
-@keyframes introText {
+@keyframes showText {
   to { opacity: 1; }
 }
 
-
-/* ===============================
-   MAIN APP
-=============================== */
+/* APP */
 #app {
   opacity: 0;
-  animation: appFade 2s ease forwards;
+  animation: fadeIn 2s forwards;
   animation-delay: 1.8s;
 }
 
-@keyframes appFade {
+@keyframes fadeIn {
   to { opacity: 1; }
 }
 
-
-/* ===============================
-   HERO SECTION
-=============================== */
+/* HERO */
 .hero {
   height: 100vh;
   position: relative;
@@ -72,14 +59,10 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.05), rgba(0,0,0,0.95));
-  z-index: 1;
+  background: radial-gradient(circle, rgba(255,255,255,0.05), rgba(0,0,0,0.95));
 }
 
-
-/* ===============================
-   PEARL LAYER (LUX)
-=============================== */
+/* PEARLS */
 .pearls {
   position: fixed;
   inset: 0;
@@ -90,118 +73,60 @@ body {
 .pearl {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffffff, #d0d0d0, #8a8a8a);
-  box-shadow:
-    0 3px 8px rgba(0,0,0,0.4),
-    0 0 10px rgba(255,255,255,0.08);
-
-  animation: floatPearl 6s ease-in-out infinite;
+  background: radial-gradient(circle at 30% 30%, #fff, #cfcfcf);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  animation: float 6s ease-in-out infinite;
 }
 
-@keyframes floatPearl {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-
-/* ===============================
-   HERO TEXT
-=============================== */
+/* TEXT */
 .hero-content {
   position: relative;
   z-index: 3;
 }
 
 .names {
-  font-size: 3.2rem;
+  font-size: 3rem;
   font-weight: 300;
-  letter-spacing: 3px;
 }
 
 .subtitle {
-  margin-top: 10px;
   opacity: 0.7;
-  letter-spacing: 1px;
+  margin-top: 10px;
 }
 
-
-/* ===============================
-   SECTIONS
-=============================== */
+/* SECTIONS */
 .section {
-  padding: 80px 20px;
+  padding: 70px 20px;
   text-align: center;
 }
 
-
-/* ===============================
-   TIMER
-=============================== */
-#countdown {
-  font-size: 1.6rem;
-  margin-top: 10px;
-  letter-spacing: 2px;
-}
-
-
-/* ===============================
-   PHOTO BLOCK (GLASS LUX)
-=============================== */
+/* PHOTO */
 .photo-frame {
-  width: 85%;
-  max-width: 520px;
-  height: 320px;
+  width: 80%;
+  max-width: 500px;
+  height: 300px;
   margin: auto;
-
   border-radius: 20px;
-
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
-
-  backdrop-filter: blur(12px);
-
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-
-  color: rgba(255,255,255,0.4);
 }
 
-
-/* ===============================
-   BUTTON (MUSIC)
-=============================== */
+/* BUTTON */
 button {
-  font-family: inherit;
-  font-size: 14px;
-
-  border-radius: 30px;
+  margin-top: 15px;
+  padding: 12px 18px;
+  border-radius: 25px;
   border: 1px solid rgba(255,255,255,0.2);
-
   background: rgba(0,0,0,0.5);
   color: #fff;
-
-  padding: 12px 16px;
   cursor: pointer;
-
-  backdrop-filter: blur(10px);
-
-  transition: 0.3s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
-  background: rgba(255,255,255,0.08);
-}
-@media (max-width: 768px) {
-  .pearl {
-    opacity: 0.4 !important;
-    filter: none !important;
-    animation-duration: 8s !important;
-  }
-
-  .names {
-    font-size: 2.2rem;
-  }
 }
