@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation</title>
+  <title>Свадебное приглашение</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -15,10 +15,7 @@
   <div class="intro-text">You are invited</div>
 </div>
 
-<!-- PEARLS BACKGROUND -->
-<div class="pearls"></div>
-
-<!-- MAIN APP -->
+<!-- MAIN -->
 <main id="app">
 
   <!-- HERO -->
@@ -27,22 +24,24 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
+
       <div class="names">Лидия & Денис</div>
 
       <div class="subtitle">
-        Мы будем рады разделить с вами этот день
+        07 августа 2026 · 14:20
       </div>
 
-      <div class="subtitle" style="margin-top:15px;">
-        07.08.2026 · 14:20
+      <div class="subtitle">
+        Свадебное приглашение
       </div>
 
-      <div id="countdown">загрузка...</div>
+      <div id="countdown" style="margin-top:15px; opacity:0.7;"></div>
+
     </div>
 
   </section>
 
-  <!-- ZAGS -->
+  <!-- CEREMONY -->
   <section class="section">
     <h2>Церемония</h2>
     <p>07.08.2026 · 14:20</p>
@@ -60,11 +59,10 @@
   <!-- DRESS CODE -->
   <section class="section">
     <h2>Дресс-код</h2>
-
-    <p>Белый · Чёрный · Бежевый · Нейтральные оттенки</p>
+    <p>Чёрный · Белый · Бежевый · Нейтральные оттенки</p>
 
     <div class="photo-frame">
-      Примеры образов появятся позже
+      Примеры образов будут добавлены позже
     </div>
   </section>
 
@@ -74,13 +72,14 @@
 
     <p>Пожалуйста, сообщите о своём присутствии</p>
 
-    <button onclick="window.open('mailto:ekenotova@yandex.ru?subject=RSVP — Свадьба 07.08.2026&body=Здравствуйте!%0A%0AЯ подтверждаю своё присутствие на свадьбе.%0A%0AИмя:%0AКоличество гостей:%0A%0AСпасибо! 🤍')">
+    <button onclick="window.location.href='mailto:ekenotova@yandex.ru?subject=RSVP — Свадьба 07.08.2026&body=Здравствуйте!%0A%0AЯ подтверждаю своё присутствие.%0A%0AИмя:%0AКоличество гостей:%0A%0AСпасибо!'">
       Подтвердить участие
     </button>
 
     <p style="opacity:0.6; margin-top:10px;">
-      Это поможет нам всё подготовить идеально
+      Ответ поможет нам всё подготовить
     </p>
+
   </section>
 
 </main>
