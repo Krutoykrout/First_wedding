@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +11,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ================= INTRO ================= */
+/* INTRO */
 #intro {
   position: fixed;
   inset: 0;
@@ -26,86 +25,57 @@ body {
 
 .intro-text {
   font-size: 2rem;
-  opacity: 0;
-  animation: introFade 1.2s forwards;
 }
 
-@keyframes introFade {
-  to { opacity: 1; }
-}
-
-/* ================= MAIN ================= */
+/* MAIN FADE */
 #app {
   opacity: 0;
-  animation: appFade 1.8s ease forwards;
+  animation: fadeIn 1.8s ease forwards;
   animation-delay: 1.5s;
 }
 
-@keyframes appFade {
+@keyframes fadeIn {
   to { opacity: 1; }
 }
 
-/* ================= HERO ================= */
+/* HERO */
 .hero {
   height: 100vh;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
+  position: relative;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.05), rgba(0,0,0,0.95));
+  background: radial-gradient(circle, rgba(255,255,255,0.05), rgba(0,0,0,0.95));
 }
 
-/* ================= PEARLS (LUX MOTION) ================= */
+/* PEARLS CONTAINER */
 .pearls {
   position: fixed;
   inset: 0;
-  z-index: 2;
   pointer-events: none;
+  z-index: 1;
 }
+
+/* PEARL (ВАЖНО: НИКАКОЙ ANIMATION) */
 .pearl {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
 
-  background: radial-gradient(circle at 30% 30%, #fff, #d0d0d0, #9a9a9a);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  background: radial-gradient(circle at 30% 30%, #fff, #cfcfcf, #9a9a9a);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 
-  animation: pearlSoft 6s ease-in-out infinite;
   will-change: transform;
 }
 
-@keyframes pearlSoft {
-  0%   { transform: translate(0px, 0px) scale(1); }
-  50%  { transform: translate(0px, -4px) scale(1.02); }
-  100% { transform: translate(0px, 0px) scale(1); }
-}
-
-/* ================= TEXT ================= */
-.hero-content {
-  position: relative;
-  z-index: 3;
-}
-
-.names {
-  font-size: 3rem;
-  font-weight: 300;
-  letter-spacing: 2px;
-}
-
-.subtitle {
-  opacity: 0.7;
-  margin-top: 10px;
-}
-
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 .section {
   padding: 80px 20px;
   text-align: center;
@@ -120,33 +90,34 @@ body {
   transform: translateY(0);
 }
 
-/* ================= PHOTO ================= */
+/* PHOTO */
 .photo-frame {
   width: 80%;
   max-width: 500px;
   height: 300px;
   margin: auto;
-  border-radius: 20px;
 
+  border-radius: 20px;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
 
   backdrop-filter: blur(10px);
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ================= BUTTON ================= */
+/* BUTTON */
 button {
   margin-top: 15px;
   padding: 12px 18px;
-  border-radius: 25px;
 
+  border-radius: 25px;
   border: 1px solid rgba(255,255,255,0.2);
+
   background: rgba(0,0,0,0.5);
   color: #fff;
 
   cursor: pointer;
-  backdrop-filter: blur(10px);
 }
