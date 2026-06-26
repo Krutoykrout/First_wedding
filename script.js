@@ -147,3 +147,28 @@ btn.addEventListener("click", async () => {
     alert("Нажми ещё раз для запуска музыки");
   }
 });
+function movePearls(x, y) {
+  const pearls = document.querySelectorAll(".pearl");
+
+  pearls.forEach((p, i) => {
+    const speed = (i % 3 + 1) * 0.2;
+    p.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+  });
+}
+
+// ПК
+document.addEventListener("mousemove", (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+  movePearls(x, y);
+});
+
+// 📱 ТЕЛЕФОН
+document.addEventListener("touchmove", (e) => {
+  if (!e.touches[0]) return;
+
+  const x = (e.touches[0].clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.touches[0].clientY / window.innerHeight - 0.5) * 10;
+
+  movePearls(x, y);
+});
