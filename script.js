@@ -1,4 +1,3 @@
-
 // ================= INTRO =================
 window.addEventListener("load", () => {
   const intro = document.getElementById("intro");
@@ -45,16 +44,17 @@ function reveal() {
   const trigger = window.innerHeight * 0.85;
 
   sections.forEach(sec => {
-    const top = sec.getBoundingClientRect().top;
-    if (top < trigger) sec.classList.add("show");
+    if (sec.getBoundingClientRect().top < trigger) {
+      sec.classList.add("show");
+    }
   });
 }
 
-reveal();
 window.addEventListener("scroll", reveal);
+reveal();
 
 
-// ================= PEARLS =================
+// ================= PEARLS (INDIVIDUAL MOTION) =================
 const container = document.querySelector(".pearls");
 
 const isMobile = window.innerWidth < 768;
@@ -62,7 +62,6 @@ const count = isMobile ? 40 : 90;
 
 const pearls = [];
 
-// создание жемчуга
 function createPearls() {
   if (!container) return;
 
@@ -78,10 +77,10 @@ function createPearls() {
     p.style.left = Math.random() * window.innerWidth + "px";
     p.style.top = Math.random() * window.innerHeight + "px";
 
-    // 💎 уникальные параметры для каждого
-    p.dataset.speedX = (Math.random() * 0.6 + 0.2).toFixed(2);
-    p.dataset.speedY = (Math.random() * 0.6 + 0.2).toFixed(2);
-    p.dataset.offset = (Math.random() * Math.PI * 2).toFixed(2);
+    // уникальность движения
+    p.dataset.ax = (Math.random() * 0.8 + 0.2);
+    p.dataset.ay = (Math.random() * 0.8 + 0.2);
+    p.dataset.ph = Math.random() * Math.PI * 2;
 
     container.appendChild(p);
     pearls.push(p);
@@ -91,18 +90,17 @@ function createPearls() {
 createPearls();
 
 
-// ================= INDIVIDUAL LUX MOTION =================
+// ================= MOTION ENGINE =================
 function animate() {
-  const time = Date.now() * 0.0004;
+  const t = Date.now() * 0.0004;
 
-  pearls.forEach((p, i) => {
-    const speedX = parseFloat(p.dataset.speedX);
-    const speedY = parseFloat(p.dataset.speedY);
-    const offset = parseFloat(p.dataset.offset);
+  pearls.forEach(p => {
+    const ax = parseFloat(p.dataset.ax);
+    const ay = parseFloat(p.dataset.ay);
+    const ph = parseFloat(p.dataset.ph);
 
-    // маленькое, но заметное индивидуальное движение
-    const x = Math.sin(time + offset) * speedX;
-    const y = Math.cos(time + offset) * speedY;
+    const x = Math.sin(t + ph) * ax;
+    const y = Math.cos(t + ph) * ay;
 
     p.style.transform = `translate(${x}px, ${y}px)`;
   });
