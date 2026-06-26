@@ -5,39 +5,20 @@
 }
 
 body {
-  background: #0b0b0b;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
+  font-family: Arial;
+  background: #0c0c0c;
+  color: white;
 }
 
 /* INTRO */
 #intro {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  transition: opacity 1s ease;
-}
-
-.intro-text {
-  font-size: 22px;
-  letter-spacing: 2px;
-  opacity: 0.8;
-}
-
-/* MAIN */
-#app {
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
-  animation-delay: 1.2s;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
+  z-index: 999;
 }
 
 /* HERO */
@@ -47,64 +28,68 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.04), rgba(0,0,0,0.95));
 }
 
 .names {
-  font-size: 34px;
+  font-size: 40px;
   font-weight: 300;
-  letter-spacing: 1px;
 }
 
-.subtitle {
+.date {
+  opacity: 0.7;
   margin-top: 10px;
-  opacity: 0.6;
-  font-size: 14px;
 }
 
-/* SECTIONS */
-.section {
-  padding: 70px 20px;
+/* ================= CURVED SECTIONS ================= */
+
+.curve-section {
+  padding: 80px 20px;
+  background: #141414;
+  border-radius: 60px 60px 0 0;
+  margin-top: -40px;
+}
+
+.curve-section.alt {
+  background: #101010;
+  border-radius: 0 0 60px 60px;
+}
+
+.card {
+  max-width: 500px;
+  margin: auto;
   text-align: center;
 
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease;
-}
-
-.section.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* PHOTO BLOCK */
-.photo-frame {
-  width: 90%;
-  max-width: 420px;
-  height: 240px;
-
-  margin: 20px auto;
-
-  border-radius: 16px;
   background: rgba(255,255,255,0.04);
+  padding: 30px;
+  border-radius: 25px;
+
   border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* DRESS GRID */
+.dress-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dress-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
 }
 
 /* BUTTON */
 button {
   margin-top: 15px;
-  padding: 12px 18px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 30px;
 
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.03);
-  color: #fff;
+  border: none;
+  background: white;
+  color: black;
 
   cursor: pointer;
 }
