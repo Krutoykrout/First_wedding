@@ -130,3 +130,35 @@ button {
   color: #fff;
   cursor: pointer;
 }
+
+/* ===============================
+   APPLE-LIKE FADE ANIMATION
+=============================== */
+
+.section {
+  padding: 80px 20px;
+  text-align: center;
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+  will-change: opacity, transform;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* мягкое появление всего сайта */
+#app {
+  opacity: 0;
+  animation: appFade 1.8s ease forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes appFade {
+  to {
+    opacity: 1;
+  }
+}
