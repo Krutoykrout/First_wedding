@@ -3,41 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation</title>
+  <title>Свадебное приглашение</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- INTRO -->
 <div id="intro">
   <div class="intro-text">You are invited</div>
 </div>
 
+<!-- MAIN -->
 <main id="app">
 
   <!-- HERO -->
   <section class="hero">
-
-    <div class="hero-content">
+    <div class="hero-inner">
       <div class="names">Лидия & Денис</div>
       <div class="date">07.08.2026 · 14:20</div>
       <div id="countdown"></div>
     </div>
-
   </section>
 
-  <!-- CURVE SECTION -->
-  <section class="curve-section">
-    <div class="card">
+  <!-- SECTION 1 -->
+  <section class="curve">
+    <div class="card show">
       <h2>Церемония</h2>
       <p>ЗАГС Рудничного района</p>
       <p>07.08.2026 · 14:20</p>
     </div>
   </section>
 
-  <!-- CURVE SECTION -->
-  <section class="curve-section alt">
+  <!-- SECTION 2 -->
+  <section class="curve alt">
     <div class="card">
       <h2>Банкет</h2>
       <p>16:00</p>
@@ -45,27 +45,27 @@
     </div>
   </section>
 
-  <!-- DRESS CODE -->
-  <section class="curve-section">
+  <!-- SECTION 3 -->
+  <section class="curve">
     <div class="card">
       <h2>Дресс-код</h2>
       <p>Чёрный · Белый · Бежевый</p>
 
-      <div class="dress-grid">
-        <div class="dress-box"></div>
-        <div class="dress-box"></div>
-        <div class="dress-box"></div>
+      <div class="boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
       </div>
     </div>
   </section>
 
-  <!-- RSVP -->
-  <section class="curve-section alt">
+  <!-- SECTION 4 -->
+  <section class="curve alt">
     <div class="card">
-      <h2>RSVP</h2>
+      <h2>Подтверждение</h2>
       <p>Пожалуйста, подтвердите участие</p>
 
-      <button onclick="window.location.href='mailto:ekenotova@yandex.ru?subject=RSVP — Свадьба&body=Имя:%0AГости:%0A%0AЯ буду присутствовать'">
+      <button onclick="window.location.href='mailto:ekenotova@yandex.ru?subject=RSVP&body=Имя:%0AГости:%0A'">
         Подтвердить участие
       </button>
     </div>
