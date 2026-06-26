@@ -1,78 +1,72 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Invitation</title>
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- INTRO SCREEN -->
-  <div id="intro">
-    <h1 class="intro-text">You are invited</h1>
-  </div>
+<!-- ================= INTRO ================= -->
+<div id="intro">
+  <div class="intro-text">You are invited</div>
+</div>
 
-  <!-- MAIN WRAPPER -->
-  <main id="app">
+<!-- ================= PEARLS ================= -->
+<div class="pearls"></div>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
+<!-- ================= MAIN ================= -->
+<main id="app">
 
-      <!-- background overlay -->
-      <div class="hero-overlay"></div>
+  <!-- HERO -->
+  <section class="hero">
 
-      <!-- pearls layer (canvas/animation later) -->
-      <div class="pearls"></div>
+    <div class="hero-overlay"></div>
 
-      <!-- couple names -->
-      <div class="hero-content">
-        <h2 class="names">
-          Лидия<br/>&<br/>Денис
-        </h2>
+    <div class="hero-content">
+      <div class="names">Лидия & Денис</div>
+      <div class="subtitle">07.08.2026 · 14:20</div>
 
-        <p class="subtitle">Wedding Invitation</p>
-      </div>
+      <div id="countdown">загрузка...</div>
+    </div>
 
-    </section>
+  </section>
 
-    <!-- INVITE SECTION -->
-    <section class="section invite">
-      <h3>Приглашение</h3>
-      <p>
-        Мы будем рады разделить с вами этот особенный день.
-      </p>
-    </section>
+  <!-- DETAILS -->
+  <section class="section">
+    <h2>ЗАГС</h2>
+    <p>Рудничный район · 14:20</p>
+  </section>
 
-    <!-- TIMER SECTION -->
-    <section class="section timer">
-      <h3>До свадьбы осталось</h3>
-      <div id="countdown">00 : 00 : 00 : 00</div>
-    </section>
+  <section class="section">
+    <h2>Банкет</h2>
+    <p>«Волна» · Томская 5 · 16:00</p>
+  </section>
 
-    <!-- PHOTO SECTION -->
-    <section class="section photo">
-      <div class="photo-frame">
-        <!-- сюда вставишь фото пары -->
-      </div>
-    </section>
+  <!-- DRESS CODE -->
+  <section class="section">
+    <h2>Дресс-код</h2>
+    <div class="photo-frame">
+      Фото-примеры (добавим позже)
+    </div>
+  </section>
 
-    <!-- DRESS CODE -->
-    <section class="section dresscode">
-      <h3>Dress Code</h3>
-      <p>Black & White Elegance</p>
-    </section>
+  <!-- RSVP -->
+  <section class="section">
+    <h2>Подтверждение</h2>
+    <p>Напишите нам в Telegram</p>
+    <button onclick="window.open('https://t.me/your_link_here')">
+      RSVP в Telegram
+    </button>
+  </section>
 
-    <!-- RSVP -->
-    <section class="section rsvp">
-      <h3>RSVP</h3>
-      <button>Ответить в Telegram</button>
-    </section>
+</main>
 
-  </main>
+<!-- ================= MUSIC + SCRIPT ================= -->
+<script src="script.js"></script>
 
-  <script src="script.js"></script>
 </body>
 </html>
