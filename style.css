@@ -1,4 +1,7 @@
-/* RESET */
+
+/* ===============================
+   RESET
+=============================== */
 * {
   margin: 0;
   padding: 0;
@@ -6,13 +9,16 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
   background: #050505;
   color: #fff;
+  font-family: Arial, sans-serif;
   overflow-x: hidden;
 }
 
-/* INTRO SCREEN */
+
+/* ===============================
+   INTRO
+=============================== */
 #intro {
   position: fixed;
   inset: 0;
@@ -21,39 +27,38 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  animation: introFade 2.5s ease forwards;
+  transition: opacity 1.2s ease;
 }
 
 .intro-text {
-  font-size: 2.2rem;
+  font-size: 2rem;
   letter-spacing: 2px;
-  font-weight: 300;
   opacity: 0;
-  animation: textAppear 1.2s ease forwards;
+  animation: introText 1.2s ease forwards;
 }
 
-@keyframes textAppear {
-  0% { opacity: 0; transform: scale(1.1); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes introFade {
-  0%, 70% { opacity: 1; }
-  100% { opacity: 0; visibility: hidden; }
-}
-
-/* MAIN APP */
-#app {
-  opacity: 0;
-  animation: appShow 2.8s ease forwards;
-  animation-delay: 2.2s;
-}
-
-@keyframes appShow {
+@keyframes introText {
   to { opacity: 1; }
 }
 
-/* HERO */
+
+/* ===============================
+   MAIN APP
+=============================== */
+#app {
+  opacity: 0;
+  animation: appFade 2s ease forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes appFade {
+  to { opacity: 1; }
+}
+
+
+/* ===============================
+   HERO SECTION
+=============================== */
 .hero {
   height: 100vh;
   position: relative;
@@ -67,113 +72,125 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.3), rgba(0,0,0,0.95));
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05), rgba(0,0,0,0.95));
   z-index: 1;
 }
 
-/* PEARLS LAYER (заготовка под анимацию) */
+
+/* ===============================
+   PEARL LAYER (LUX)
+=============================== */
 .pearls {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.6;
 }
 
-/* HERO CONTENT */
+.pearl {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #d0d0d0, #8a8a8a);
+  box-shadow:
+    0 3px 8px rgba(0,0,0,0.4),
+    0 0 10px rgba(255,255,255,0.08);
+
+  animation: floatPearl 6s ease-in-out infinite;
+}
+
+@keyframes floatPearl {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+
+/* ===============================
+   HERO TEXT
+=============================== */
 .hero-content {
   position: relative;
   z-index: 3;
 }
 
 .names {
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 300;
-  line-height: 1.2;
   letter-spacing: 3px;
 }
 
 .subtitle {
-  margin-top: 12px;
-  font-size: 1rem;
+  margin-top: 10px;
   opacity: 0.7;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
-/* SECTIONS */
+
+/* ===============================
+   SECTIONS
+=============================== */
 .section {
   padding: 80px 20px;
   text-align: center;
 }
 
-.section h3 {
+
+/* ===============================
+   TIMER
+=============================== */
+#countdown {
   font-size: 1.6rem;
-  margin-bottom: 15px;
-  font-weight: 300;
+  margin-top: 10px;
   letter-spacing: 2px;
 }
 
-.section p {
-  opacity: 0.75;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
 
-/* GLASS EFFECT CARD */
+/* ===============================
+   PHOTO BLOCK (GLASS LUX)
+=============================== */
 .photo-frame {
-  width: 80%;
-  max-width: 500px;
-  height: 300px;
-  margin: 0 auto;
+  width: 85%;
+  max-width: 520px;
+  height: 320px;
+  margin: auto;
+
   border-radius: 20px;
 
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
+
+  backdrop-filter: blur(12px);
 
   display: flex;
   align-items: center;
   justify-content: center;
+
   color: rgba(255,255,255,0.4);
 }
 
-/* BUTTON */
+
+/* ===============================
+   BUTTON (MUSIC)
+=============================== */
 button {
-  margin-top: 15px;
-  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 14px;
+
   border-radius: 30px;
   border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.05);
+
+  background: rgba(0,0,0,0.5);
   color: #fff;
+
+  padding: 12px 16px;
   cursor: pointer;
+
+  backdrop-filter: blur(10px);
+
   transition: 0.3s ease;
 }
 
 button:hover {
-  background: rgba(255,255,255,0.15);
   transform: scale(1.05);
-}
-
-/* TIMER */
-#countdown {
-  font-size: 1.8rem;
-  letter-spacing: 3px;
-  margin-top: 10px;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .names {
-    font-size: 2.2rem;
-  }
-
-  .section {
-    padding: 60px 15px;
-  }
-
-  .photo-frame {
-    height: 220px;
-    width: 90%;
-  }
+  background: rgba(255,255,255,0.08);
 }
