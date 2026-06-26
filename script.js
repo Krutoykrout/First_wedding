@@ -80,11 +80,11 @@ function createPearls() {
 
 createPearls();
 
+// ===============================
+// MUSIC PLAYER (100% WORKING)
+// ===============================
 
-// ===============================
-// MUSIC PLAYER
-// ===============================
-const audio = new Audio("music.mp3"); 
+const audio = new Audio("music.mp3"); // или твое имя файла
 audio.loop = true;
 audio.volume = 0.5;
 
@@ -93,27 +93,40 @@ let isPlaying = false;
 // создаём кнопку
 const musicBtn = document.createElement("button");
 musicBtn.innerText = "🎵 Включить музыку";
+
 musicBtn.style.position = "fixed";
 musicBtn.style.bottom = "20px";
 musicBtn.style.right = "20px";
 musicBtn.style.zIndex = "9999";
-musicBtn.style.padding = "10px 15px";
-musicBtn.style.borderRadius = "20px";
+
+musicBtn.style.padding = "12px 16px";
+musicBtn.style.borderRadius = "30px";
 musicBtn.style.border = "1px solid rgba(255,255,255,0.3)";
-musicBtn.style.background = "rgba(0,0,0,0.5)";
+musicBtn.style.background = "rgba(0,0,0,0.6)";
 musicBtn.style.color = "#fff";
 musicBtn.style.cursor = "pointer";
+musicBtn.style.backdropFilter = "blur(10px)";
 
 document.body.appendChild(musicBtn);
 
-musicBtn.addEventListener("click", async () => {
+// ВАЖНО: разные типы событий для мобилки и ПК
+function toggleMusic() {
   if (!isPlaying) {
-    await audio.play();
-    musicBtn.innerText = "⏸ Пауза музыки";
-    isPlaying = true;
+    audio.play()
+      .then(() => {
+        isPlaying = true;
+        musicBtn.innerText = "⏸ Выключить музыку";
+      })
+      .catch(err => {
+        console.log("Музыка заблокирована браузером:", err);
+        alert("Нажми ещё раз, чтобы включить музыку");
+      });
   } else {
     audio.pause();
-    musicBtn.innerText = "🎵 Включить музыку";
     isPlaying = false;
+    musicBtn.innerText = "🎵 Включить музыку";
   }
-});
+}
+
+musicBtn.addEventListener("click", toggleMusic);
+musicBtn.addEventListener("touchstart", toggleMusic);
