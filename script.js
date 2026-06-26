@@ -40,35 +40,34 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 
-// PEARLS ANIMATION (простая, но уже "дорогая" база)
-const pearlsContainer = document.querySelector(".pearls");
+// PEARLS ANIMATION (простая, но уже "дорогая" база)const pearlsContainer = document.querySelector(".pearls");
 
 function createPearl() {
   const pearl = document.createElement("div");
+  pearl.classList.add("pearl");
 
-  pearl.style.position = "absolute";
-  pearl.style.width = "10px";
-  pearl.style.height = "10px";
-  pearl.style.borderRadius = "50%";
-  pearl.style.background = "radial-gradient(circle at 30% 30%, #fff, #d9d9d9)";
-  pearl.style.boxShadow = "0 0 10px rgba(255,255,255,0.3)";
+  // ВАЖНО: теперь привязываем к контейнеру, а не к окну
+  const containerRect = pearlsContainer.getBoundingClientRect();
 
-  pearl.style.left = Math.random() * 100 + "vw";
-  pearl.style.top = "-20px";
+  const x = Math.random() * containerRect.width;
+  const y = Math.random() * containerRect.height;
 
-  pearl.style.opacity = Math.random() * 0.6 + 0.3;
+  pearl.style.left = x + "px";
+  pearl.style.top = y + "px";
 
-  const duration = Math.random() * 5 + 5;
+  const size = 6 + Math.random() * 10;
+  pearl.style.width = size + "px";
+  pearl.style.height = size + "px";
 
-  pearl.style.animation = `fall ${duration}s linear infinite`;
+  pearl.style.animationDelay = Math.random() * 3 + "s";
 
   pearlsContainer.appendChild(pearl);
-
-  setTimeout(() => {
-    pearl.remove();
-  }, duration * 1000);
 }
 
+// создаём больше, чтобы точно было видно
+for (let i = 0; i < 80; i++) {
+  createPearl();
+}
 // CSS animation injection (чтобы не усложнять тебе)
 const style = document.createElement("style");
 style.innerHTML = `
