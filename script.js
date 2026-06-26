@@ -62,6 +62,7 @@ const count = isMobile ? 40 : 90;
 
 const pearls = [];
 
+// создание жемчуга
 function createPearls() {
   if (!container) return;
 
@@ -69,15 +70,18 @@ function createPearls() {
     const p = document.createElement("div");
     p.className = "pearl";
 
-    const size = 4 + Math.random() * 10;
-
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight;
+    const size = 4 + Math.random() * 8;
 
     p.style.width = size + "px";
     p.style.height = size + "px";
-    p.style.left = x + "px";
-    p.style.top = y + "px";
+
+    p.style.left = Math.random() * window.innerWidth + "px";
+    p.style.top = Math.random() * window.innerHeight + "px";
+
+    // 💎 уникальные параметры для каждого
+    p.dataset.speedX = (Math.random() * 0.6 + 0.2).toFixed(2);
+    p.dataset.speedY = (Math.random() * 0.6 + 0.2).toFixed(2);
+    p.dataset.offset = (Math.random() * Math.PI * 2).toFixed(2);
 
     container.appendChild(p);
     pearls.push(p);
@@ -87,13 +91,18 @@ function createPearls() {
 createPearls();
 
 
-// ================= PEARL MOTION (LUX DRIFT) =================
+// ================= INDIVIDUAL LUX MOTION =================
 function animate() {
-  const time = Date.now() * 0.001;
+  const time = Date.now() * 0.0004;
 
   pearls.forEach((p, i) => {
-    const x = Math.sin(time + i) * 0.6;
-    const y = Math.cos(time + i) * 0.6;
+    const speedX = parseFloat(p.dataset.speedX);
+    const speedY = parseFloat(p.dataset.speedY);
+    const offset = parseFloat(p.dataset.offset);
+
+    // маленькое, но заметное индивидуальное движение
+    const x = Math.sin(time + offset) * speedX;
+    const y = Math.cos(time + offset) * speedY;
 
     p.style.transform = `translate(${x}px, ${y}px)`;
   });
