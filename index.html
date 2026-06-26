@@ -3,88 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Свадебное приглашение</title>
+  <title>Wedding Invitation</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- INTRO -->
 <div id="intro">
   <div class="intro-text">You are invited</div>
 </div>
 
-<!-- MAIN -->
 <main id="app">
 
   <!-- HERO -->
   <section class="hero">
 
-    <div class="hero-overlay"></div>
-
     <div class="hero-content">
-
       <div class="names">Лидия & Денис</div>
-
-      <div class="subtitle">
-        07 августа 2026 · 14:20
-      </div>
-
-      <div class="subtitle">
-        Свадебное приглашение
-      </div>
-
-      <div id="countdown" style="margin-top:15px; opacity:0.7;"></div>
-
+      <div class="date">07.08.2026 · 14:20</div>
+      <div id="countdown"></div>
     </div>
 
   </section>
 
-  <!-- CEREMONY -->
-  <section class="section">
-    <h2>Церемония</h2>
-    <p>07.08.2026 · 14:20</p>
-    <p>ЗАГС Рудничного района</p>
+  <!-- CURVE SECTION -->
+  <section class="curve-section">
+    <div class="card">
+      <h2>Церемония</h2>
+      <p>ЗАГС Рудничного района</p>
+      <p>07.08.2026 · 14:20</p>
+    </div>
   </section>
 
-  <!-- BANQUET -->
-  <section class="section">
-    <h2>Банкет</h2>
-    <p>16:00</p>
-    <p>Банкетный зал «Волна»</p>
-    <p>ул. Томская 5</p>
+  <!-- CURVE SECTION -->
+  <section class="curve-section alt">
+    <div class="card">
+      <h2>Банкет</h2>
+      <p>16:00</p>
+      <p>«Волна», ул. Томская 5</p>
+    </div>
   </section>
 
   <!-- DRESS CODE -->
-  <section class="section">
-    <h2>Дресс-код</h2>
-    <p>Чёрный · Белый · Бежевый · Нейтральные оттенки</p>
+  <section class="curve-section">
+    <div class="card">
+      <h2>Дресс-код</h2>
+      <p>Чёрный · Белый · Бежевый</p>
 
-    <div class="photo-frame">
-      Примеры образов будут добавлены позже
+      <div class="dress-grid">
+        <div class="dress-box"></div>
+        <div class="dress-box"></div>
+        <div class="dress-box"></div>
+      </div>
     </div>
   </section>
 
   <!-- RSVP -->
-  <section class="section">
-    <h2>Подтверждение участия</h2>
+  <section class="curve-section alt">
+    <div class="card">
+      <h2>RSVP</h2>
+      <p>Пожалуйста, подтвердите участие</p>
 
-    <p>Пожалуйста, сообщите о своём присутствии</p>
-
-    <button onclick="window.location.href='mailto:ekenotova@yandex.ru?subject=RSVP — Свадьба 07.08.2026&body=Здравствуйте!%0A%0AЯ подтверждаю своё присутствие.%0A%0AИмя:%0AКоличество гостей:%0A%0AСпасибо!'">
-      Подтвердить участие
-    </button>
-
-    <p style="opacity:0.6; margin-top:10px;">
-      Ответ поможет нам всё подготовить
-    </p>
-
+      <button onclick="window.location.href='mailto:ekenotova@yandex.ru?subject=RSVP — Свадьба&body=Имя:%0AГости:%0A%0AЯ буду присутствовать'">
+        Подтвердить участие
+      </button>
+    </div>
   </section>
 
 </main>
 
-<!-- SCRIPT -->
 <script src="script.js"></script>
 
 </body>
