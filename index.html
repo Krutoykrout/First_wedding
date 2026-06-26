@@ -1,217 +1,207 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#050505" />
-  <meta name="description" content="Свадебное приглашение" />
-  <title>Свадебное приглашение</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Денис & Лидия — приглашение на свадьбу</title>
+  <meta name="description" content="Приглашение на свадьбу Дениса и Лидии — 7 августа 2026" />
+  <meta property="og:title" content="Денис & Лидия — 07.08.2026" />
+  <meta property="og:description" content="С радостью приглашаем вас разделить с нами день нашей свадьбы." />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="site-bg" aria-hidden="true"></div>
-  <div class="pearl-rain" aria-hidden="true"></div>
+  <div class="page-noise" aria-hidden="true"></div>
+  <div class="floating-pearls" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
 
-  <header class="hero" id="top">
-    <nav class="topbar" aria-label="Навигация">
+  <header class="hero section-dark" id="top">
+    <nav class="topbar" aria-label="Навигация по сайту">
       <a href="#program">Программа</a>
       <a href="#dress">Дресс-код</a>
       <a href="#rsvp">Анкета</a>
     </nav>
 
-    <section class="hero-card card card--light reveal">
-      <div class="pearl-crown" aria-hidden="true"></div>
+    <div class="hero-card card-white reveal">
       <p class="eyebrow">Wedding day</p>
-      <!-- Замените имена ниже на имена пары -->
-      <h1>Имя &amp; Имя</h1>
+      <h1>Денис <span>&</span> Лидия</h1>
+      <div class="date-box" aria-label="Дата свадьбы 7 августа 2026">
+        <span>07</span>
+        <i></i>
+        <span>08</span>
+        <i></i>
+        <span>2026</span>
+      </div>
       <p class="hero-text">
-        Дорогие родные и близкие, совсем скоро состоится наша свадьба.
-        Мы будем счастливы разделить с вами этот особенный день.
+        С радостью приглашаем вас разделить с нами один из самых тёплых и важных дней — день нашей свадьбы.
       </p>
+      <button class="music-button" type="button" id="musicToggle" aria-label="Включить музыку">
+        <span class="music-icon">♪</span>
+        <span id="musicLabel">Включить песню</span>
+      </button>
+      <audio id="weddingMusic" preload="metadata" loop>
+        <source src="assets/music/song.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
 
-      <div class="date-row" aria-label="Дата свадьбы">
-        <span>07</span><span>08</span><span>2026</span>
+    <div class="countdown reveal" aria-live="polite">
+      <p>До свадьбы осталось</p>
+      <div class="countdown-grid" id="countdown">
+        <div><strong>—</strong><span>дней</span></div>
+        <div><strong>—</strong><span>часов</span></div>
+        <div><strong>—</strong><span>минут</span></div>
+        <div><strong>—</strong><span>секунд</span></div>
       </div>
-
-      <div class="countdown" id="countdown" aria-label="Обратный отсчёт до свадьбы">
-        <div><strong id="days">—</strong><span>дней</span></div>
-        <div><strong id="hours">—</strong><span>часов</span></div>
-        <div><strong id="minutes">—</strong><span>минут</span></div>
-        <div><strong id="seconds">—</strong><span>секунд</span></div>
-      </div>
-    </section>
+    </div>
   </header>
 
   <main>
-    <section class="section intro reveal">
-      <p class="section-kicker">Приглашение</p>
-      <h2>С нежностью ждём вас</h2>
-      <p>
-        В этот день нам особенно важно видеть рядом самых дорогих людей.
-        Пусть вечер будет наполнен улыбками, музыкой, красивыми моментами и тёплыми словами.
-      </p>
+    <section class="section section-light" id="places">
+      <div class="section-title reveal">
+        <p class="eyebrow">Место проведения</p>
+        <h2>Где мы будем вас ждать</h2>
+      </div>
+
+      <div class="cards two-cols">
+        <article class="info-card reveal">
+          <span class="number">14:20</span>
+          <h3>Церемония</h3>
+          <p>ЗАГС Рудничного района</p>
+          <p class="muted">Кемерово</p>
+          <a class="text-link" target="_blank" rel="noopener" href="https://yandex.ru/maps/?text=%D0%9A%D0%B5%D0%BC%D0%B5%D1%80%D0%BE%D0%B2%D0%BE%20%D0%97%D0%90%D0%93%D0%A1%20%D0%A0%D1%83%D0%B4%D0%BD%D0%B8%D1%87%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%80%D0%B0%D0%B9%D0%BE%D0%BD%D0%B0">Открыть на карте</a>
+        </article>
+
+        <article class="info-card reveal">
+          <span class="number">16:00</span>
+          <h3>Сбор гостей</h3>
+          <p>Банкетный зал «Волна»</p>
+          <p class="muted">Кемерово, ул. Томская, 5</p>
+          <a class="text-link" target="_blank" rel="noopener" href="https://yandex.ru/maps/?text=%D0%9A%D0%B5%D0%BC%D0%B5%D1%80%D0%BE%D0%B2%D0%BE%20%D0%A2%D0%BE%D0%BC%D1%81%D0%BA%D0%B0%D1%8F%205%20%D0%92%D0%BE%D0%BB%D0%BD%D0%B0">Открыть на карте</a>
+        </article>
+      </div>
     </section>
 
-    <section class="section grid-2" id="places">
-      <article class="place-card card card--dark reveal">
-        <p class="section-kicker">Церемония</p>
-        <h2>14:20</h2>
-        <p>ЗАГС Рудничного района</p>
-        <small>Точный адрес можно дописать позже в файле <b>index.html</b>.</small>
-      </article>
+    <section class="section section-dark" id="program">
+      <div class="section-title reveal">
+        <p class="eyebrow">Программа дня</p>
+        <h2>7 августа 2026</h2>
+      </div>
 
-      <article class="place-card card card--light reveal">
-        <p class="section-kicker">Сбор гостей</p>
-        <h2>16:00</h2>
-        <p>Банкетный зал «Волна»</p>
-        <small>Томская, 5</small>
-        <a class="button button--dark" target="_blank" rel="noopener" href="https://yandex.ru/maps/?text=%D0%A2%D0%BE%D0%BC%D1%81%D0%BA%D0%B0%D1%8F%205%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B7%D0%B0%D0%BB%20%D0%92%D0%BE%D0%BB%D0%BD%D0%B0">
-          Открыть карту
-        </a>
-      </article>
-    </section>
-
-    <section class="section program" id="program">
-      <p class="section-kicker reveal">Программа дня</p>
-      <h2 class="reveal">07 августа 2026</h2>
       <div class="timeline reveal">
-        <div class="time-item">
-          <span>14:20</span>
+        <div class="timeline-item">
+          <time>14:20</time>
           <div>
             <h3>Торжественная церемония</h3>
-            <p>ЗАГС Рудничного района</p>
+            <p>ЗАГС Рудничного района, Кемерово</p>
           </div>
         </div>
-        <div class="time-item">
-          <span>16:00</span>
+        <div class="timeline-item">
+          <time>16:00</time>
           <div>
             <h3>Сбор гостей</h3>
-            <p>Банкетный зал «Волна», Томская, 5</p>
+            <p>Банкетный зал «Волна», ул. Томская, 5</p>
           </div>
         </div>
-        <div class="time-item">
-          <span>После сбора</span>
+        <div class="timeline-item">
+          <time>после сбора</time>
           <div>
             <h3>Праздничный вечер</h3>
-            <p>Ужин, поздравления, музыка и тёплая атмосфера</p>
+            <p>Ужин, поздравления, музыка и самые тёплые моменты вместе с вами.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section dress" id="dress">
-      <p class="section-kicker reveal">Дресс-код</p>
-      <h2 class="reveal">Black &amp; White minimal</h2>
-      <p class="section-note reveal">
-        Будем благодарны, если вы поддержите стилистику вечера: чёрный, белый,
-        молочный, графитовый и жемчужные акценты.
-      </p>
-
-      <div class="dress-gallery">
-        <figure class="dress-card reveal">
-          <img src="assets/dress/dress-1.svg" alt="Пример женского образа в чёрном цвете" />
-          <figcaption>Платья и костюмы</figcaption>
-        </figure>
-        <figure class="dress-card reveal">
-          <img src="assets/dress/dress-2.svg" alt="Пример мужского образа в чёрно-белом стиле" />
-          <figcaption>Классика для мужчин</figcaption>
-        </figure>
-        <figure class="dress-card reveal">
-          <img src="assets/dress/dress-3.svg" alt="Пример чёрно-белых аксессуаров" />
-          <figcaption>Монохромные детали</figcaption>
-        </figure>
-        <figure class="dress-card reveal">
-          <img src="assets/dress/dress-4.svg" alt="Жемчужные акценты" />
-          <figcaption>Жемчуг приветствуется</figcaption>
-        </figure>
+    <section class="section section-light dress-section" id="dress">
+      <div class="section-title reveal">
+        <p class="eyebrow">Дресс-код</p>
+        <h2>Total black</h2>
+        <p class="section-subtitle">Пожалуйста, поддержите чёрно-белую эстетику нашего торжества. Основной цвет образа — чёрный.</p>
       </div>
 
-      <div class="hint reveal">
-        Фото дресс-кода можно заменить на ваши: положите изображения в папку
-        <b>assets/dress</b> и поменяйте пути у картинок в этом блоке.
+      <div class="dress-grid">
+        <figure class="dress-card reveal">
+          <img src="assets/images/dress-women.jpg" alt="Примеры женских образов в чёрном цвете" />
+          <figcaption>Для девушек: изящные чёрные платья, костюмы, фактурные ткани, жемчуг.</figcaption>
+        </figure>
+        <figure class="dress-card reveal">
+          <img src="assets/images/dress-men.jpg" alt="Примеры мужских образов в чёрном цвете" />
+          <figcaption>Для мужчин: чёрная рубашка, брюки, костюм или аккуратный smart casual.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="section wishes grid-2">
-      <article class="card card--light reveal bow-card">
-        <div class="bow" aria-hidden="true"></div>
-        <p class="section-kicker">Пожелания</p>
-        <h2>Нам будет приятно</h2>
+    <section class="section section-dark wishes">
+      <div class="wish-card card-white reveal">
+        <p class="eyebrow">Пожелания</p>
+        <h2>Ваше присутствие — главный подарок</h2>
         <p>
-          Вместо громоздких букетов можно выбрать лёгкие комплименты или открытку
-          с тёплыми словами. Самое важное — ваше присутствие и хорошее настроение.
+          Будем счастливы видеть вас рядом в этот день. Тёплые слова, улыбки и хорошее настроение — всё, что нам особенно важно.
         </p>
-      </article>
-
-      <article class="card card--dark reveal music-card" id="music">
-        <p class="section-kicker">Музыка</p>
-        <h2>Песня для настроения</h2>
-        <p>
-          Кнопка готова для песни. Добавьте аудиофайл в папку
-          <b>assets/music</b> и назовите его <b>song.mp3</b>.
-        </p>
-        <button class="button button--light" id="musicToggle" type="button">Включить музыку</button>
-        <audio id="weddingAudio" preload="none" src="assets/music/song.mp3"></audio>
-        <small id="musicStatus">Если файл ещё не добавлен, музыка не запустится.</small>
-      </article>
+      </div>
     </section>
 
-    <section class="section rsvp" id="rsvp">
-      <p class="section-kicker reveal">Анкета гостя</p>
-      <h2 class="reveal">Подтвердите присутствие</h2>
-      <p class="section-note reveal">
-        Заполните форму — сайт подготовит красивое сообщение. Его можно скопировать
-        или отправить через SMS/Telegram/MAX, если добавить контакты в <b>script.js</b>.
-      </p>
+    <section class="section section-light" id="rsvp">
+      <div class="section-title reveal">
+        <p class="eyebrow">Анкета гостя</p>
+        <h2>Подтвердите присутствие</h2>
+        <p class="section-subtitle">Ответ будет отправлен только на почту организатора: ekenotova@yandex.ru</p>
+      </div>
 
-      <form class="rsvp-form card card--light reveal" id="rsvpForm">
+      <form class="rsvp-form reveal" id="rsvpForm" action="https://formsubmit.co/ekenotova@yandex.ru" method="POST" data-ajax-endpoint="https://formsubmit.co/ajax/ekenotova@yandex.ru">
+        <input type="hidden" name="_subject" value="Ответ гостя: свадьба Дениса и Лидии" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="Событие" value="Свадьба Дениса и Лидии, 07.08.2026" />
+
         <label>
-          Ваше имя
-          <input required name="name" type="text" placeholder="Например: Анна" />
+          Ваше имя и фамилия
+          <input type="text" name="Имя гостя" placeholder="Например: Анна Иванова" required />
         </label>
 
+        <fieldset>
+          <legend>Вы сможете присутствовать?</legend>
+          <label class="radio-line">
+            <input type="radio" name="Присутствие" value="Да, буду" required />
+            <span>Да, буду</span>
+          </label>
+          <label class="radio-line">
+            <input type="radio" name="Присутствие" value="К сожалению, не смогу" />
+            <span>К сожалению, не смогу</span>
+          </label>
+        </fieldset>
+
         <label>
-          Вы сможете прийти?
-          <select name="presence" required>
-            <option value="Да, буду/будем">Да, буду/будем</option>
-            <option value="К сожалению, не получится">К сожалению, не получится</option>
+          Количество гостей
+          <select name="Количество гостей" required>
+            <option value="" selected disabled>Выберите вариант</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="Другое — указано в комментарии">Другое — укажу в комментарии</option>
           </select>
         </label>
 
         <label>
-          Количество гостей
-          <input name="guests" type="number" min="1" max="10" value="1" />
+          Комментарий, пожелания или особенности по меню
+          <textarea name="Комментарий" rows="4" placeholder="Напишите здесь, если есть важные детали"></textarea>
         </label>
 
-        <label>
-          Комментарий
-          <textarea name="comment" rows="4" placeholder="Пожелания, вопросы, особенности питания"></textarea>
-        </label>
-
-        <button class="button button--dark" type="submit">Сформировать ответ</button>
+        <button class="submit-button" type="submit">Отправить ответ на почту</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
-
-      <div class="reply-box card card--dark" id="replyBox" hidden>
-        <h3>Ваш ответ</h3>
-        <p id="replyText"></p>
-        <div class="reply-actions">
-          <button class="button button--light" id="copyReply" type="button">Скопировать</button>
-          <a class="button button--light" id="smsLink" href="#">SMS</a>
-          <a class="button button--light" id="telegramLink" href="#">Telegram</a>
-          <a class="button button--light" id="maxLink" href="#">MAX</a>
-        </div>
-        <small>Контакты для кнопок редактируются в начале файла <b>script.js</b>.</small>
-      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="pearl-line" aria-hidden="true"></div>
-    <p>С любовью ждём вас · 07.08.2026</p>
-    <a href="#top">Наверх</a>
+  <footer class="footer section-dark">
+    <p class="eyebrow">Денис & Лидия</p>
+    <p>С нетерпением ждём вас • 07.08.2026</p>
+    <a href="#top" class="text-link">Наверх</a>
   </footer>
 
   <script src="script.js"></script>
