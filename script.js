@@ -1,5 +1,6 @@
+
 // ===============================
-// INTRO SCREEN
+// INTRO
 // ===============================
 window.addEventListener("load", () => {
   const intro = document.getElementById("intro");
@@ -7,41 +8,36 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     if (intro) {
       intro.style.opacity = "0";
-      intro.style.transition = "opacity 1s ease";
-
-      setTimeout(() => {
-        intro.remove();
-      }, 1000);
+      intro.style.transition = "1.2s ease";
+      setTimeout(() => intro.remove(), 1200);
     }
-  }, 2000);
+  }, 1800);
 });
 
 
 // ===============================
-// COUNTDOWN TIMER
+// COUNTDOWN
 // ===============================
 const weddingDate = new Date("2026-08-07T14:20:00").getTime();
-
-const countdownEl = document.getElementById("countdown");
+const countdown = document.getElementById("countdown");
 
 function updateCountdown() {
-  if (!countdownEl) return;
+  if (!countdown) return;
 
-  const now = new Date().getTime();
+  const now = Date.now();
   const diff = weddingDate - now;
 
   if (diff <= 0) {
-    countdownEl.innerHTML = "Сегодня 💍";
+    countdown.innerText = "Сегодня 💍";
     return;
   }
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
 
-  countdownEl.innerHTML =
-    `${days}д : ${hours}ч : ${minutes}м : ${seconds}с`;
+  countdown.innerText = `${d}д ${h}ч ${m}м ${s}с`;
 }
 
 setInterval(updateCountdown, 1000);
@@ -49,84 +45,105 @@ updateCountdown();
 
 
 // ===============================
-// PEARL FIELD (стабильная версия)
+// LUX PEARL LAYER (3D FEEL)
 // ===============================
-const pearlsContainer = document.querySelector(".pearls");
+const pearlsLayer = document.querySelector(".pearls");
 
-function createPearls() {
-  if (!pearlsContainer) return;
+function createPearl() {
+  if (!pearlsLayer) return;
 
-  for (let i = 0; i < 70; i++) {
-    const pearl = document.createElement("div");
-    pearl.classList.add("pearl");
+  const p = document.createElement("div");
+  p.className = "pearl";
 
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight;
+  // размер (разная глубина)
+  const size = 4 + Math.random() * 10;
 
-    const size = 6 + Math.random() * 10;
+  // позиция по всему экрану (ВАЖНО: fixed viewport)
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight;
 
-    pearl.style.left = x + "px";
-    pearl.style.top = y + "px";
-    pearl.style.width = size + "px";
-    pearl.style.height = size + "px";
+  p.style.width = size + "px";
+  p.style.height = size + "px";
 
-    pearl.style.opacity = 0.5 + Math.random() * 0.5;
+  p.style.left = x + "px";
+  p.style.top = y + "px";
 
-    pearl.style.animationDelay = Math.random() * 4 + "s";
+  // глубина (имитация Z)
+  const depth = Math.random();
 
-    pearlsContainer.appendChild(pearl);
-  }
+  p.style.opacity = 0.25 + depth * 0.6;
+  p.style.transform = `scale(${0.8 + depth * 0.6})`;
+
+  // мягкое “дыхание”
+  p.style.animation = `floatPearl ${4 + depth * 6}s ease-in-out infinite`;
+  p.style.animationDelay = Math.random() * 5 + "s";
+
+  pearlsLayer.appendChild(p);
 }
 
-createPearls();
+// создаём слой жемчуга
+for (let i = 0; i < 90; i++) {
+  createPearl();
+}
+
 
 // ===============================
-// MUSIC PLAYER (100% WORKING)
+// MOUSE PARALLAX (LUX EFFECT)
 // ===============================
+document.addEventListener("mousemove", (e) => {
+  const pearls = document.querySelectorAll(".pearl");
 
-const audio = new Audio("music.mp3"); // или твое имя файла
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+
+  pearls.forEach((p, i) => {
+    const speed = (i % 3 + 1) * 0.2;
+    p.style.transform += ` translate(${x * speed}px, ${y * speed}px)`;
+  });
+});
+
+
+// ===============================
+// MUSIC (STABLE LUX VERSION)
+// ===============================
+const audio = new Audio("music.mp3");
 audio.loop = true;
-audio.volume = 0.5;
+audio.volume = 0.45;
 
-let isPlaying = false;
+let playing = false;
 
-// создаём кнопку
-const musicBtn = document.createElement("button");
-musicBtn.innerText = "🎵 Включить музыку";
+const btn = document.createElement("button");
+btn.innerText = "🎵 Музыка";
 
-musicBtn.style.position = "fixed";
-musicBtn.style.bottom = "20px";
-musicBtn.style.right = "20px";
-musicBtn.style.zIndex = "9999";
+Object.assign(btn.style, {
+  position: "fixed",
+  bottom: "20px",
+  right: "20px",
+  zIndex: "99999",
+  padding: "12px 16px",
+  borderRadius: "30px",
+  border: "1px solid rgba(255,255,255,0.2)",
+  background: "rgba(0,0,0,0.55)",
+  color: "#fff",
+  backdropFilter: "blur(10px)",
+  cursor: "pointer"
+});
 
-musicBtn.style.padding = "12px 16px";
-musicBtn.style.borderRadius = "30px";
-musicBtn.style.border = "1px solid rgba(255,255,255,0.3)";
-musicBtn.style.background = "rgba(0,0,0,0.6)";
-musicBtn.style.color = "#fff";
-musicBtn.style.cursor = "pointer";
-musicBtn.style.backdropFilter = "blur(10px)";
+document.body.appendChild(btn);
 
-document.body.appendChild(musicBtn);
-
-// ВАЖНО: разные типы событий для мобилки и ПК
-function toggleMusic() {
-  if (!isPlaying) {
-    audio.play()
-      .then(() => {
-        isPlaying = true;
-        musicBtn.innerText = "⏸ Выключить музыку";
-      })
-      .catch(err => {
-        console.log("Музыка заблокирована браузером:", err);
-        alert("Нажми ещё раз, чтобы включить музыку");
-      });
-  } else {
-    audio.pause();
-    isPlaying = false;
-    musicBtn.innerText = "🎵 Включить музыку";
+btn.addEventListener("click", async () => {
+  try {
+    if (!playing) {
+      await audio.play();
+      playing = true;
+      btn.innerText = "⏸ Пауза";
+    } else {
+      audio.pause();
+      playing = false;
+      btn.innerText = "🎵 Музыка";
+    }
+  } catch (e) {
+    console.log("Audio error:", e);
+    alert("Нажми ещё раз для запуска музыки");
   }
-}
-
-musicBtn.addEventListener("click", toggleMusic);
-musicBtn.addEventListener("touchstart", toggleMusic);
+});
