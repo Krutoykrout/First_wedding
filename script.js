@@ -1,67 +1,87 @@
-// === ЗАСТАВКА ===
-window.addEventListener('load', () => {
-  const splash = document.getElementById('splash');
-  if (splash) {
-    setTimeout(() => {
-      splash.classList.add('fade-out');
-    }, 2000);
-  }
+// INTRO SCREEN CLEANUP (чтобы аккуратно убрать заставку)
+window.addEventListener("load", () => {
+  const intro = document.getElementById("intro");
+
+  setTimeout(() => {
+    if (intro) {
+      intro.style.opacity = "0";
+      intro.style.transition = "opacity 1s ease";
+      setTimeout(() => intro.remove(), 1000);
+    }
+  }, 2200);
 });
 
-// === КАЧАНИЕ ЖЕМЧУЖНЫХ БУС ===
-const strings = document.querySelectorAll('.pearl-string');
-if (strings.length) {
-  strings.forEach((str, i) => {
-    const delay = i * 0.3;
-    const duration = 3 + i * 0.7;
-    str.style.animation = `sway ${duration}s infinite alternate ease-in-out`;
-    str.style.animationDelay = `${delay}s`;
-  });
 
-  // Вставляем ключевые кадры анимации
-  const styleSheet = document.createElement('style');
-  styleSheet.textContent = `
-    @keyframes sway {
-      0% { transform: rotate(0deg) translateX(0); }
-      25% { transform: rotate(2deg) translateX(4px); }
-      75% { transform: rotate(-1.5deg) translateX(-4px); }
-      100% { transform: rotate(0deg) translateX(0); }
-    }
-  `;
-  document.head.appendChild(styleSheet);
-}
+// COUNTDOWN TIMER
+// 👉 поменяй дату свадьбы здесь:
+const weddingDate = new Date("2026-09-01T00:00:00").getTime();
 
-// === ТАЙМЕР ===
-const weddingDate = new Date('2025-07-15T16:00:00').getTime();
+const countdownEl = document.getElementById("countdown");
 
-function updateTimer() {
+function updateCountdown() {
   const now = new Date().getTime();
-  const distance = weddingDate - now;
+  const diff = weddingDate - now;
 
-  if (distance < 0) {
-    document.getElementById('days').textContent = '00';
-    document.getElementById('hours').textContent = '00';
-    document.getElementById('minutes').textContent = '00';
-    document.getElementById('seconds').textContent = '00';
+  if (diff <= 0) {
+    countdownEl.innerHTML = "Сегодня 💍";
     return;
   }
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
 
-  document.getElementById('days').textContent = String(days).padStart(2, '0');
-  document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-  document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-  document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  countdownEl.innerHTML =
+    `${days}д : ${hours}ч : ${minutes}м : ${seconds}с`;
 }
 
-updateTimer();
-setInterval(updateTimer, 1000);
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
-// === КАРТА (заглушка, замени на свой iframe при желании) ===
-const mapDiv = document.getElementById('map');
-if (mapDiv) {
-  mapDiv.innerHTML = '<p style="padding:2rem;">📍 Карта появится после замены на iframe Яндекс.Карт</p>';
+
+// PEARLS ANIMATION (простая, но уже "дорогая" база)
+const pearlsContainer = document.querySelector(".pearls");
+
+function createPearl() {
+  const pearl = document.createElement("div");
+
+  pearl.style.position = "absolute";
+  pearl.style.width = "10px";
+  pearl.style.height = "10px";
+  pearl.style.borderRadius = "50%";
+  pearl.style.background = "radial-gradient(circle at 30% 30%, #fff, #d9d9d9)";
+  pearl.style.boxShadow = "0 0 10px rgba(255,255,255,0.3)";
+
+  pearl.style.left = Math.random() * 100 + "vw";
+  pearl.style.top = "-20px";
+
+  pearl.style.opacity = Math.random() * 0.6 + 0.3;
+
+  const duration = Math.random() * 5 + 5;
+
+  pearl.style.animation = `fall ${duration}s linear infinite`;
+
+  pearlsContainer.appendChild(pearl);
+
+  setTimeout(() => {
+    pearl.remove();
+  }, duration * 1000);
 }
+
+// CSS animation injection (чтобы не усложнять тебе)
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+`;
+document.head.appendChild(style);
+
+// создаём жемчуг постоянно
+setInterval(createPearl, 300);
