@@ -1,4 +1,6 @@
-// INTRO SCREEN CLEANUP (чтобы аккуратно убрать заставку)
+// ===============================
+// INTRO SCREEN
+// ===============================
 window.addEventListener("load", () => {
   const intro = document.getElementById("intro");
 
@@ -6,19 +8,25 @@ window.addEventListener("load", () => {
     if (intro) {
       intro.style.opacity = "0";
       intro.style.transition = "opacity 1s ease";
-      setTimeout(() => intro.remove(), 1000);
+
+      setTimeout(() => {
+        intro.remove();
+      }, 1000);
     }
-  }, 2200);
+  }, 2000);
 });
 
 
+// ===============================
 // COUNTDOWN TIMER
-// 👉 поменяй дату свадьбы здесь:
-const weddingDate = new Date("2026-09-01T00:00:00").getTime();
+// ===============================
+const weddingDate = new Date("2026-08-07T14:20:00").getTime();
 
 const countdownEl = document.getElementById("countdown");
 
 function updateCountdown() {
+  if (!countdownEl) return;
+
   const now = new Date().getTime();
   const diff = weddingDate - now;
 
@@ -40,47 +48,72 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 
-// PEARLS ANIMATION (простая, но уже "дорогая" база)const pearlsContainer = document.querySelector(".pearls");
+// ===============================
+// PEARL FIELD (стабильная версия)
+// ===============================
+const pearlsContainer = document.querySelector(".pearls");
 
-function createPearl() {
-  const pearl = document.createElement("div");
-  pearl.classList.add("pearl");
+function createPearls() {
+  if (!pearlsContainer) return;
 
-  // ВАЖНО: теперь привязываем к контейнеру, а не к окну
-  const containerRect = pearlsContainer.getBoundingClientRect();
+  for (let i = 0; i < 70; i++) {
+    const pearl = document.createElement("div");
+    pearl.classList.add("pearl");
 
-  const x = Math.random() * containerRect.width;
-  const y = Math.random() * containerRect.height;
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
 
-  pearl.style.left = x + "px";
-  pearl.style.top = y + "px";
+    const size = 6 + Math.random() * 10;
 
-  const size = 6 + Math.random() * 10;
-  pearl.style.width = size + "px";
-  pearl.style.height = size + "px";
+    pearl.style.left = x + "px";
+    pearl.style.top = y + "px";
+    pearl.style.width = size + "px";
+    pearl.style.height = size + "px";
 
-  pearl.style.animationDelay = Math.random() * 3 + "s";
+    pearl.style.opacity = 0.5 + Math.random() * 0.5;
 
-  pearlsContainer.appendChild(pearl);
-}
+    pearl.style.animationDelay = Math.random() * 4 + "s";
 
-// создаём больше, чтобы точно было видно
-for (let i = 0; i < 80; i++) {
-  createPearl();
-}
-// CSS animation injection (чтобы не усложнять тебе)
-const style = document.createElement("style");
-style.innerHTML = `
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
+    pearlsContainer.appendChild(pearl);
   }
 }
-`;
-document.head.appendChild(style);
 
-// создаём жемчуг постоянно
-setInterval(createPearl, 300);
+createPearls();
+
+
+// ===============================
+// MUSIC PLAYER
+// ===============================
+const audio = new Audio("music.mp3"); 
+audio.loop = true;
+audio.volume = 0.5;
+
+let isPlaying = false;
+
+// создаём кнопку
+const musicBtn = document.createElement("button");
+musicBtn.innerText = "🎵 Включить музыку";
+musicBtn.style.position = "fixed";
+musicBtn.style.bottom = "20px";
+musicBtn.style.right = "20px";
+musicBtn.style.zIndex = "9999";
+musicBtn.style.padding = "10px 15px";
+musicBtn.style.borderRadius = "20px";
+musicBtn.style.border = "1px solid rgba(255,255,255,0.3)";
+musicBtn.style.background = "rgba(0,0,0,0.5)";
+musicBtn.style.color = "#fff";
+musicBtn.style.cursor = "pointer";
+
+document.body.appendChild(musicBtn);
+
+musicBtn.addEventListener("click", async () => {
+  if (!isPlaying) {
+    await audio.play();
+    musicBtn.innerText = "⏸ Пауза музыки";
+    isPlaying = true;
+  } else {
+    audio.pause();
+    musicBtn.innerText = "🎵 Включить музыку";
+    isPlaying = false;
+  }
+});
