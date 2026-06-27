@@ -9,13 +9,12 @@
   let previousCountdown = [];
   let musicUnlocked = false;
 
-  function padNumber(value) {
+  function pad(value) {
     return String(value).padStart(2, '0');
   }
 
   function updateCountdown() {
     if (!countdown) return;
-
     const now = new Date();
     const diff = weddingDate - now;
 
@@ -27,17 +26,15 @@
     const totalSeconds = Math.floor(diff / 1000);
     const values = [
       [Math.floor(totalSeconds / 86400), 'дней'],
-      [padNumber(Math.floor((totalSeconds % 86400) / 3600)), 'часов'],
-      [padNumber(Math.floor((totalSeconds % 3600) / 60)), 'минут'],
-      [padNumber(totalSeconds % 60), 'секунд']
+      [pad(Math.floor((totalSeconds % 86400) / 3600)), 'часов'],
+      [pad(Math.floor((totalSeconds % 3600) / 60)), 'минут'],
+      [pad(totalSeconds % 60), 'секунд']
     ];
 
-    countdown.innerHTML = values
-      .map(([value, label], index) => {
-        const shouldFlip = previousCountdown[index] !== undefined && String(previousCountdown[index]) !== String(value);
-        return `<div class="${shouldFlip ? 'flip' : ''}"><strong>${value}</strong><span>${label}</span></div>`;
-      })
-      .join('');
+    countdown.innerHTML = values.map(([value, label], index) => {
+      const flip = previousCountdown[index] !== undefined && String(previousCountdown[index]) !== String(value);
+      return `<div class="${flip ? 'flip' : ''}"><strong>${value}</strong><span>${label}</span></div>`;
+    }).join('');
 
     previousCountdown = values.map(([value]) => value);
   }
@@ -45,39 +42,39 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  async function tryStartMusic() {
+  async function startMusic() {
     if (!music || musicUnlocked) return;
     try {
       music.volume = 0.38;
+      music.muted = false;
       await music.play();
       musicUnlocked = true;
-      removeUnlockListeners();
+      removeMusicListeners();
     } catch (error) {
       musicUnlocked = false;
     }
   }
 
-  function removeUnlockListeners() {
-    window.removeEventListener('pointerdown', tryStartMusic);
-    window.removeEventListener('touchstart', tryStartMusic);
-    window.removeEventListener('keydown', tryStartMusic);
-    window.removeEventListener('scroll', tryStartMusic);
+  function removeMusicListeners() {
+    window.removeEventListener('pointerdown', startMusic);
+    window.removeEventListener('touchstart', startMusic);
+    window.removeEventListener('keydown', startMusic);
+    window.removeEventListener('scroll', startMusic);
   }
 
   if (music) {
-    music.addEventListener('canplaythrough', tryStartMusic, { once: true });
-    window.addEventListener('load', tryStartMusic, { once: true });
-    document.addEventListener('DOMContentLoaded', tryStartMusic, { once: true });
-
-    // Fallback for browsers that block sound until the first real page interaction.
-    window.addEventListener('pointerdown', tryStartMusic, { passive: true });
-    window.addEventListener('touchstart', tryStartMusic, { passive: true });
-    window.addEventListener('keydown', tryStartMusic);
-    window.addEventListener('scroll', tryStartMusic, { passive: true });
+    music.setAttribute('autoplay', '');
+    music.setAttribute('playsinline', '');
+    document.addEventListener('DOMContentLoaded', startMusic, { once: true });
+    window.addEventListener('load', startMusic, { once: true });
+    music.addEventListener('canplay', startMusic, { once: true });
+    window.addEventListener('pointerdown', startMusic, { passive: true });
+    window.addEventListener('touchstart', startMusic, { passive: true });
+    window.addEventListener('keydown', startMusic);
+    window.addEventListener('scroll', startMusic, { passive: true });
   }
 
-  const revealItems = document.querySelectorAll('.reveal');
-
+  const revealItems = [...document.querySelectorAll('.reveal')];
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -86,7 +83,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
 
     revealItems.forEach((item, index) => {
       item.style.setProperty('--delay', `${Math.min(index % 4, 3) * 0.08}s`);
@@ -96,18 +93,21 @@
     revealItems.forEach((item) => item.classList.add('is-visible'));
   }
 
-  requestAnimationFrame(() => {
-    document.querySelectorAll('.hero .reveal').forEach((item) => item.classList.add('is-visible'));
-  });
+  window.setTimeout(() => {
+    revealItems.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 1.08) item.classList.add('is-visible');
+    });
+  }, 450);
 
   let ticking = false;
-
   function updateParallax() {
     const photo = document.querySelector('.photo-section');
     if (photo) {
       const rect = photo.getBoundingClientRect();
-      const viewport = window.innerHeight || 1;
-      const progress = Math.min(1, Math.max(0, 1 - Math.abs(rect.top) / viewport));
+      const vh = window.innerHeight || 1;
+      const centerDistance = Math.abs(rect.top + rect.height / 2 - vh / 2);
+      const progress = Math.max(0, 1 - centerDistance / (vh + rect.height / 2));
       photo.style.setProperty('--photo-scale', (progress * 0.035).toFixed(3));
     }
     ticking = false;
@@ -119,6 +119,7 @@
       ticking = true;
     }
   }, { passive: true });
+  updateParallax();
 
   function setFormStatus(message, isError = false) {
     if (!formStatus) return;
@@ -138,7 +139,6 @@
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-
       const submitButton = form.querySelector('button[type="submit"]');
       const formData = new FormData(form);
 
@@ -154,9 +154,7 @@
           body: formData,
           headers: { Accept: 'application/json' }
         });
-
-        if (!response.ok) throw new Error('FormSubmit error');
-
+        if (!response.ok) throw new Error('Form submit failed');
         form.reset();
         setFormStatus('Спасибо! Ваш ответ отправлен.');
       } catch (error) {
